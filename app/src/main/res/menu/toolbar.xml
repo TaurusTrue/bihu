@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/up_load_image"
+        android:icon="@drawable/ic_perm_media_black_24dp"
+        android:title="Image"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/done"
+        android:icon="@drawable/ic_done_black_24dp"
+        android:title="Done"
+        app:showAsAction="always" />
+
+
+</menu>
