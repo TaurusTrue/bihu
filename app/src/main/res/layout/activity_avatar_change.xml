@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.taurus.bihu.Activity.AvatarChangeActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/colorPrimary"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:text="请选择获取图片方式"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/take_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/avatar_preview"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:padding="15dp"
+        android:text="打开相机"
+        android:textSize="17sp" />
+
+    <Button
+        android:id="@+id/open_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/avatar_preview"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentRight="true"
+        android:padding="15dp"
+        android:text="从相册中选择"
+        android:textSize="17sp" />
+
+    <Button
+        android:id="@+id/done_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/take_photo"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp"
+        android:text="确认上传"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/text_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_title"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="80dp"
+        android:text="头像预览："
+        android:textSize="25dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar_preview"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/text_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_face_gray_24dp" />
+
+</RelativeLayout>

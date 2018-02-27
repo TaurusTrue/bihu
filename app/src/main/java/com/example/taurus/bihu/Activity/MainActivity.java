@@ -27,6 +27,7 @@ import com.example.taurus.bihu.adapter.QuestionAdapter;
 import com.example.taurus.bihu.config.Apiconfig;
 import com.example.taurus.bihu.data.Question;
 import com.example.taurus.bihu.data.User;
+import com.example.taurus.bihu.utils.ActivityCollector;
 import com.example.taurus.bihu.utils.HttpUtil;
 import com.example.taurus.bihu.utils.JsonUtil;
 import com.example.taurus.bihu.utils.Response;
@@ -40,7 +41,6 @@ public class MainActivity extends BaseActivity {
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
     private DrawerLayout mDrawerlayout;
-    private TextView nav_username;
     private List<Question> mQuestionList;
     private RecyclerView questionRecyclerView;
     private QuestionAdapter questionAdapter;
@@ -127,6 +127,9 @@ public class MainActivity extends BaseActivity {
                         sendUserActionStart(intent1, user);
                         break;
                     case R.id.avatar:
+                        Intent intent3 = new Intent(MainActivity.this,AvatarChangeActivity.class);
+                        sendUserActionStart(intent3,user);
+                        finish();
                         break;
                     case R.id.changePassword:
                         initDialog();
@@ -145,16 +148,8 @@ public class MainActivity extends BaseActivity {
         View view = navigationView.inflateHeaderView(R.layout.nav_header);
         TextView username = (TextView) view.findViewById(R.id.nav_username);
         username.setText(user.getUsername());
-        final CircleImageView mAvatar = (CircleImageView) view.findViewById(R.id.avatar);
-        HttpUtil.loadImageResource(user.getImageUrl(), new HttpUtil.loadBitmap() {
-            @Override
-            public void onFinish(Bitmap bitmap) {
-                mAvatar.setImageBitmap(bitmap);
-            }
-            @Override
-            public void onError(Exception e) {
-            }
-        });
+        final CircleImageView mAvatar = (CircleImageView) view.findViewById(R.id.nav_avatar);
+        HttpUtil.loadAvatar(user.getImageUrl(),mAvatar);
     }
 
     private void loadSwipe() {

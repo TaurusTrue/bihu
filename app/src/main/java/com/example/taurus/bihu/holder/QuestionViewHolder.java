@@ -71,11 +71,16 @@ public class QuestionViewHolder extends RecyclerView.ViewHolder {
 
     public void initQuestionViewHolder(final Question question, List<Question> questions, QuestionViewHolder holder, int type) {
         mAuthorName.setText(question.getAuthorName());
+        if(question.getAuthorAvatarUrlString()=="null"){
+            mAvatar.setImageResource(R.mipmap.default_avatar);
+        }else{
+            HttpUtil.loadAvatar(question.getAuthorAvatarUrlString(),mAvatar);
+        }
         mDate.setText(question.getDate());
         if (question.getRecent().equals("null")) {
             mRecentDate.setText("");
         } else {
-            mRecentDate.setText(question.getRecent());
+            mRecentDate.setText("最新更新："+question.getRecent());
         }
         mQuestionTitle.setText(question.getTitle());
         mQuestionDetail.setText(question.getContent());
@@ -244,5 +249,8 @@ public class QuestionViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
+    public CircleImageView getmAvatar(){
+        return mAvatar;
+    }
 
 }

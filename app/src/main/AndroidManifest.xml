@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
 
     <application
         android:name=".utils.MyApplication"
@@ -14,6 +16,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:authorities="com.example.taurus.bihu.fileprovader"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/file_paths"/></provider>
         <activity android:name=".Activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,10 +41,11 @@
             android:name=".Activity.QuestionActivity"
             android:label="提出问题" />
         <activity android:name=".Activity.FavoriteListActivity" />
-        <activity android:name=".Activity.AnswerListActivity"
-            android:label="问题详情">
-
-        </activity>
+        <activity
+            android:name=".Activity.AnswerListActivity"
+            android:label="问题详情"></activity>
+        <activity android:name=".Activity.AvatarChangeActivity"
+            android:label=""></activity>
     </application>
 
 </manifest>

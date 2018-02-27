@@ -9,6 +9,7 @@ public class Response {
     private int mStatus;
     private String mInfo;
     private String mData;
+    private String mToken;
 
 
     Response(byte[] response){
@@ -24,8 +25,27 @@ public class Response {
         }else mData = null;
 
     }
+
+    Response(byte[] respense,int type){
+        String res = new String(respense);
+        mStatus = JsonUtil.getStatus(res);
+        if(JsonUtil.getString(res,"info")!=null){
+            mInfo = JsonUtil.getString(res,"info");
+        }else{
+            mInfo = null;
+        }
+        if(mStatus==200&&JsonUtil.getString(res,"token")!=null){
+            mToken = JsonUtil.getString(res,"token");
+        }else{
+            mToken = null;
+        }
+    }
     public boolean isSuccess(){
         return mStatus==200;
+    }
+
+    public String getmToken(){
+        return mToken;
     }
 
     public int getmStatus() {

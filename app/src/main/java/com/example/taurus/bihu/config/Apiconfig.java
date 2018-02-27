@@ -22,4 +22,6 @@ public class Apiconfig {
     public static final String CANCEL_FAVORITE = "http://bihu.jay86.com/cancelFavorite.php";//取消收藏
     public static final String FAVORITE = "http://bihu.jay86.com/favorite.php";//收藏
     public static final String CHANGE_PASSWORD = "http://bihu.jay86.com/changePassword.php";//更改密码
+    public static final String TOKEN_URL = "http://zzzia.net/qiniu/";//请求返回token,来自子来学姐的获取七牛云token的接口
+
 }
