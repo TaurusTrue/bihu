@@ -310,6 +310,7 @@ public class AvatarChangeActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+
                 Intent intent = new Intent(AvatarChangeActivity.this,MainActivity.class);
                 sendUserActionStart(intent,user);
                 finish();
