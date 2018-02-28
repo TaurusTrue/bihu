@@ -61,6 +61,11 @@ public class AnswerViewHolder extends RecyclerView.ViewHolder {
 
     public void initAnswerViewHolder(Answer answer){
         mAuthorName.setText(answer.getAuthorName());
+        if(answer.getAuthorAvatarUrlString()=="null"){
+            mAvatar.setImageResource(R.mipmap.default_avatar);
+        }else{
+            HttpUtil.loadAvatar(answer.getAuthorAvatarUrlString(),mAvatar);
+        }
         mDate.setText(answer.getDate());
         mAnswerContent.setText(answer.getContent());
         mExcitingCount.setText("("+answer.getExcitingCount()+")");

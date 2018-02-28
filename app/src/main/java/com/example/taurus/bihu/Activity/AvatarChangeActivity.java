@@ -353,6 +353,19 @@ public class AvatarChangeActivity extends BaseActivity {
         displayImage(imagePath);
     }
 
+    private String getImagePath(Uri uri, String selection) {
+        String path = null;
+        //通过Uri和selection来获取图片的真实路径
+        Cursor cursor = getContentResolver().query(uri, null, selection, null, null);
+        if (cursor != null){
+            if(cursor.moveToFirst()){
+                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            }
+            cursor.close();
+        }
+        return path;
+    }
+
     private void displayImage(String imagePath) {
         if (imagePath != null) {
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
