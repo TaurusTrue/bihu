@@ -62,6 +62,7 @@ public class User implements Parcelable{
         dest.writeString(token);
         dest.writeInt(id);
     }
+
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>(){
 
         @Override

@@ -63,6 +63,7 @@ public class AvatarChangeActivity extends BaseActivity {
     private String AccessKey = "e-XOp8QWkbvc7pw2zD_o7o6FZK4NmfSZkjPPKUE_";
     private String SecretKey = "B7udlu6gOXGCQmJX-givf_5iQXZ5cM45o5LDOoAa";
     private String bucket = "picture";
+    private String fileName = "p4ptest7d.bkt.clouddn.com";
     private Uri imageUri;
     private String imagePath;
     public static final int CHOOSE_PHOTO = 110;
@@ -116,7 +117,6 @@ public class AvatarChangeActivity extends BaseActivity {
     }// 用于初始化一些属性
 
     private void ChangeAvatar() {
-        String fileName = "p4ptest7d.bkt.clouddn.com";
         final String downUrl = "http://" + fileName + "/" + upKey;
         String param="token=" + user.getToken() + "&avatar=" + downUrl;
         HttpUtil.sendHttpRequest(Apiconfig.MODIFY_AVATAR, param, new HttpUtil.HttpCallbackListener() {
@@ -126,6 +126,7 @@ public class AvatarChangeActivity extends BaseActivity {
                 if (response.isSuccess()) {
                     Toast.makeText(AvatarChangeActivity.this, "更换成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MyApplication.getContext(),MainActivity.class);
+                    user.setImageUrl(downUrl);
                     sendUserActionStart(intent,user);
                     finish();
 
@@ -350,20 +351,6 @@ public class AvatarChangeActivity extends BaseActivity {
         Uri uri = data.getData();
         imagePath = getImagePath(uri, null);
         displayImage(imagePath);
-    }
-
-    private String getImagePath(Uri uri, String selection) {
-        String path = null;
-        //通过Uri和selection来获取图片的真实路径
-        Cursor cursor = getContentResolver().query(uri, null, selection, null, null);
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-            }
-            cursor.close();
-        }
-        Log.d("TAG", "getImagePath: " + path);
-        return path;
     }
 
     private void displayImage(String imagePath) {

@@ -1,5 +1,6 @@
 package com.example.taurus.bihu.Activity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -13,6 +14,9 @@ import com.example.taurus.bihu.config.Apiconfig;
 import com.example.taurus.bihu.data.User;
 import com.example.taurus.bihu.utils.HttpUtil;
 import com.example.taurus.bihu.utils.Response;
+import com.qiniu.android.common.Zone;
+import com.qiniu.android.storage.Configuration;
+import com.qiniu.android.storage.UploadManager;
 
 public class QuestionActivity extends BaseActivity {
 
@@ -20,6 +24,14 @@ public class QuestionActivity extends BaseActivity {
     private EditText questionTitleEdit;
     private EditText questionContentEdit;
     private User user;
+    private String AccessKey = "e-XOp8QWkbvc7pw2zD_o7o6FZK4NmfSZkjPPKUE_";
+    private String SecretKey = "B7udlu6gOXGCQmJX-givf_5iQXZ5cM45o5LDOoAa";
+    private String bucket = "picture";
+    private Uri imageUri;
+    private String imagePath;
+    private String uptoken;//服务器请求的token
+    private String upKey;
+    private UploadManager uploadManager;//七牛SDK管理者
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +78,33 @@ public class QuestionActivity extends BaseActivity {
             default:
         }return true;
     }
+
+    private void getTokenFromService() {
+        StringBuilder ask = new StringBuilder();
+        ask.append("accessKey=" + AccessKey + "&secretKey=" + SecretKey + "&bucket=" + bucket);
+        HttpUtil.sendHttpRequestH(Apiconfig.TOKEN_URL, ask.toString(), new HttpUtil.HttpCallbackListener() {
+            @Override
+            public void onFinish(Response response) {
+                if (response.isSuccess())
+                    uptoken = response.getmToken();
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
+    }//向七牛云服务器发出请求 获得用于上传的token
+
+    private void initData() {
+        getTokenFromService();//获得上传用的token
+        upKey = "image" + String.valueOf(Math.random());
+        Configuration config = new Configuration.Builder()
+                .zone(Zone.zone2)//华南地区
+                .build();
+        uploadManager = new UploadManager(config);
+    }// 用于初始化一些属性
+
 
 
 }
