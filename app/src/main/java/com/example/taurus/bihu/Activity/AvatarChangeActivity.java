@@ -88,6 +88,7 @@ public class AvatarChangeActivity extends BaseActivity {
         initData();
         loadOpenAlbumButton();
         loadDoneButton();
+        loadtakePhotoButton();
     }
 
     private void getTokenFromService() {
@@ -374,10 +375,5 @@ public class AvatarChangeActivity extends BaseActivity {
         } else {
             Toast.makeText(AvatarChangeActivity.this, "failed to get iamge", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }
