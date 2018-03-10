@@ -91,6 +91,15 @@ public class AvatarChangeActivity extends BaseActivity {
         initWindow(1);
     }
 
+    private void initData() {
+        getTokenFromService();//获得上传用的token
+        upKey = "image" + String.valueOf(Math.random());
+        Configuration config = new Configuration.Builder()
+                .zone(Zone.zone2)//华南地区
+                .build();
+        uploadManager = new UploadManager(config);
+    }// 用于初始化一些属性
+
     private void getTokenFromService() {
         StringBuilder ask = new StringBuilder();
         ask.append("accessKey=" + AccessKey + "&secretKey=" + SecretKey + "&bucket=" + bucket);
@@ -107,15 +116,6 @@ public class AvatarChangeActivity extends BaseActivity {
             }
         });
     }//向七牛云服务器发出请求 获得用于上传的token
-
-    private void initData() {
-        getTokenFromService();//获得上传用的token
-        upKey = "image" + String.valueOf(Math.random());
-        Configuration config = new Configuration.Builder()
-                .zone(Zone.zone2)//华南地区
-                .build();
-        uploadManager = new UploadManager(config);
-    }// 用于初始化一些属性
 
     private void ChangeAvatar() {
         final String downUrl = "http://" + fileName + "/" + upKey;
@@ -187,79 +187,79 @@ public class AvatarChangeActivity extends BaseActivity {
         });
     }
 
-    private void loadtakePhotoButton() {
-        takePhotoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                File outputImage = new File(getExternalCacheDir(), "outputimg.jpg");
-                if (outputImage.exists()) {
-                    outputImage.delete();
-                }
-                try {
-                    outputImage.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                /**
-                 * 内容提供者要注册
-                 */
-                if (Build.VERSION.SDK_INT >= 24) {
-                    //7.0直接使用本地真实uri是不安全的 FileProvider是一种特殊内容提供器
-                    // 可以选择性地将封装过后的uri提供给外部 提高安全性
-                    //第二个为任意唯一字符 第三个为刚刚的file
-                    imageUri = FileProvider.getUriForFile(AvatarChangeActivity.this, "com.example.mac.bihu,fileprovider", outputImage);
-                } else {
-                    imageUri = Uri.fromFile(outputImage);//真实路径
-                }
-                //判断相机权限
-                if (Build.VERSION.SDK_INT >= 23) {
-                    if (ContextCompat.checkSelfPermission(AvatarChangeActivity.this, Manifest.permission.CAMERA)
-                            != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(AvatarChangeActivity.this, new String[]{Manifest.permission.CAMERA}, TAKE_PHOTO);
-                    } else {
-                        openCamera();
-                    }
-                } else {
-                    openCamera();
-                }
-            }
-//                //创建File对象，用于储存拍照后的图片
-//                File outputImage = new File(getExternalCacheDir(), "output_image.jpg");
+//    private void loadtakePhotoButton() {
+//        takePhotoButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                File outputImage = new File(getExternalCacheDir(), "outputimg.jpg");
+//                if (outputImage.exists()) {
+//                    outputImage.delete();
+//                }
 //                try {
-//                    if (outputImage.exists()) {
-//                        outputImage.delete();
-//                    }
 //                    outputImage.createNewFile();
-//                } catch (Exception e) {
+//                } catch (IOException e) {
 //                    e.printStackTrace();
 //                }
-//                if(Build.VERSION.SDK_INT >= 24){
-//                    //将File对象转换为封装过的Uri对象,记得注册内容提供器
-//                    imageUri = FileProvider.getUriForFile(MainActivity.this,"666",outputImage);
-//                }else{
-//                    imageUri = Uri.fromFile(outputImage);//获取图片的真实本地路径，Android 7.0之前的版本才可以
-//                }if(Build.VERSION.SDK_INT>=23){
-//                    if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA)
-//                            != PackageManager.PERMISSION_GRANTED){
-//                        ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.CAMERA},TAKE_PHOTO);
-//                    }else{
+//                /**
+//                 * 内容提供者要注册
+//                 */
+//                if (Build.VERSION.SDK_INT >= 24) {
+//                    //7.0直接使用本地真实uri是不安全的 FileProvider是一种特殊内容提供器
+//                    // 可以选择性地将封装过后的uri提供给外部 提高安全性
+//                    //第二个为任意唯一字符 第三个为刚刚的file
+//                    imageUri = FileProvider.getUriForFile(AvatarChangeActivity.this, "com.example.mac.bihu,fileprovider", outputImage);
+//                } else {
+//                    imageUri = Uri.fromFile(outputImage);//真实路径
+//                }
+//                //判断相机权限
+//                if (Build.VERSION.SDK_INT >= 23) {
+//                    if (ContextCompat.checkSelfPermission(AvatarChangeActivity.this, Manifest.permission.CAMERA)
+//                            != PackageManager.PERMISSION_GRANTED) {
+//                        ActivityCompat.requestPermissions(AvatarChangeActivity.this, new String[]{Manifest.permission.CAMERA}, TAKE_PHOTO);
+//                    } else {
 //                        openCamera();
 //                    }
-//                }else{
+//                } else {
 //                    openCamera();
 //                }
-//
 //            }
+////                //创建File对象，用于储存拍照后的图片
+////                File outputImage = new File(getExternalCacheDir(), "output_image.jpg");
+////                try {
+////                    if (outputImage.exists()) {
+////                        outputImage.delete();
+////                    }
+////                    outputImage.createNewFile();
+////                } catch (Exception e) {
+////                    e.printStackTrace();
+////                }
+////                if(Build.VERSION.SDK_INT >= 24){
+////                    //将File对象转换为封装过的Uri对象,记得注册内容提供器
+////                    imageUri = FileProvider.getUriForFile(MainActivity.this,"666",outputImage);
+////                }else{
+////                    imageUri = Uri.fromFile(outputImage);//获取图片的真实本地路径，Android 7.0之前的版本才可以
+////                }if(Build.VERSION.SDK_INT>=23){
+////                    if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA)
+////                            != PackageManager.PERMISSION_GRANTED){
+////                        ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.CAMERA},TAKE_PHOTO);
+////                    }else{
+////                        openCamera();
+////                    }
+////                }else{
+////                    openCamera();
+////                }
+////
+////            }
+////        });
 //        });
-        });
-    }
+//    }貌似对着第一行代码写的有问题
 
-    private void openCamera() {
-        //启动相机程序
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intent, TAKE_PHOTO);
-    }
+//    private void openCamera() {
+//        //启动相机程序
+//        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+//        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+//        startActivityForResult(intent, TAKE_PHOTO);
+//    }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
