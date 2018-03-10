@@ -65,7 +65,7 @@ public class AvatarChangeActivity extends BaseActivity {
     private String bucket = "picture";
     private String fileName = "p4ptest7d.bkt.clouddn.com";
     private Uri imageUri;
-    private String imagePath;
+    private String imagePath = "null";
     public static final int CHOOSE_PHOTO = 110;
     public static final int TAKE_PHOTO = 120;
     private String uptoken;//服务器请求的token
@@ -150,7 +150,7 @@ public class AvatarChangeActivity extends BaseActivity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ChangeAvatar();
+                if(!"null".equals(imagePath)){ChangeAvatar();
                 if (TextUtils.isEmpty(uptoken)) {//注意可能token还没获取到 0.0 我觉得不存在
                     Toast.makeText(AvatarChangeActivity.this, "正在获取token,请等待", Toast.LENGTH_SHORT).show();
                 } else {
@@ -169,7 +169,7 @@ public class AvatarChangeActivity extends BaseActivity {
                             }, null);
                         }
                     }).start();
-                }
+                }}else Toast.makeText(AvatarChangeActivity.this,"您还未选择图片",Toast.LENGTH_SHORT).show();
             }
         });
     }

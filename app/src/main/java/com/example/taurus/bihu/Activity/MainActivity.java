@@ -150,6 +150,14 @@ public class MainActivity extends BaseActivity {
         username.setText(user.getUsername());
         final CircleImageView mAvatar = (CircleImageView) view.findViewById(R.id.nav_avatar);
         HttpUtil.loadAvatar(user.getImageUrl(),mAvatar);
+        mAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,AvatarChangeActivity.class);
+                sendUserActionStart(intent,user);
+                finish();
+            }
+        });
     }
 
     private void loadSwipe() {
