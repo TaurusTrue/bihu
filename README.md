@@ -3,8 +3,8 @@
 重庆邮电大学 红岩网校工作站 2017级 寒假考核作业
 
 ## 应用说明
-七牛云储存图片
-实现了里脊学姐逼乎API里所有的功能
+七牛云储存图片<br>
+实现了里脊学姐逼乎API里几乎所有的功能（问题中的图片添加和加载没有   0.0  ....）
 
 ## 功能展示
 
@@ -30,7 +30,7 @@
 ![](readmeFile/function7.gif)
 
 ## 应用下载
-请到上面的文件找APK
+[传送门](https://github.com/TaurusTrue/bihu/blob/master/release/app-release.apk)
 
 ## 开发者
 TaurusTrue
