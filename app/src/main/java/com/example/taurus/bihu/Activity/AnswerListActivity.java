@@ -72,8 +72,7 @@ public class AnswerListActivity extends BaseActivity {
 
     private void initDialog() {
         mAnswerDialog.show();
-        String answer =  mAnswerDialog.getmAnswerEdit().getText().toString();
-        final String param = "qid="+question.getId()+"&content="+answer+"&token="+user.getToken();
+        mAnswerDialog.getmAnswerEdit().setHeight(350);
         mAnswerDialog.setmButtonCancel(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
