@@ -26,7 +26,7 @@ public class Response {
 
     }
 
-    Response(byte[] respense,int type){
+    Response(byte[] respense,int anyNumber){
         String res = new String(respense);
         mStatus = JsonUtil.getStatus(res);
         if(JsonUtil.getString(res,"info")!=null){

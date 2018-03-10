@@ -132,15 +132,6 @@ public class JsonUtil {
         return 0;
     }
 
-    public static int getInt(String data, String name) {
-        try {
-            return new JSONObject(data).getInt(name);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
     @Nullable
     public static String getString(String data, String name) {
         try {

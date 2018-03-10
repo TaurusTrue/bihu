@@ -2,6 +2,7 @@ package com.example.taurus.bihu.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -29,6 +30,10 @@ public class RegisterActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_register);
         loadToolBar(toolbar);
         initWindow(1);
+        initRegisterButton();
+    }
+
+    private void initRegisterButton(){
         Button register = (Button) findViewById(R.id.register_button);
         final EditText username = (EditText) findViewById(R.id.username_edit);
         final EditText password = (EditText) findViewById(R.id.password_edit);
@@ -36,8 +41,12 @@ public class RegisterActivity extends BaseActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("lll", "onClick: " +password.getText().length());
                 if (!password.getText().toString().equals(passwordTwice.getText().toString())) {
                     Toast.makeText(RegisterActivity.this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
+                } else if (password.getText().length() <= 6 || password.getText().length() >= 18
+                        || username.getText().length() <= 2 || username.getText().length() >= 10) {
+                    Toast.makeText(RegisterActivity.this, "您的账号或者密码长度不对", Toast.LENGTH_SHORT).show();
                 } else {
                     HttpUtil.sendHttpRequest(Apiconfig.REGISTER, "username=" + username.getText() + "&password=" + password.getText(), new HttpUtil.HttpCallbackListener() {
                         @Override
@@ -49,18 +58,18 @@ public class RegisterActivity extends BaseActivity {
                                     public void onFinish(Response response) {
                                         User user = JsonUtil.getUser(response.getmData());
                                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                                        sendUserActionStart(intent,user);
+                                        sendUserActionStart(intent, user);
                                         ActivityCollector.finishAll();
                                     }
 
                                     @Override
                                     public void onError(Exception e) {
-                                        Log.d("TAG",e.toString());
+                                        Log.d("TAG", e.toString());
                                     }
                                 });
 
-                            }else{
-                                Toast.makeText(RegisterActivity.this,response.getmInfo(),Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(RegisterActivity.this, response.getmInfo(), Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -72,7 +81,6 @@ public class RegisterActivity extends BaseActivity {
                 }
             }
         });
-
     }
 
     @Override

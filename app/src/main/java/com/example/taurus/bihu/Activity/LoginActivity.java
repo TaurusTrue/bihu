@@ -31,7 +31,6 @@ public class LoginActivity extends BaseActivity {
     private CheckBox rememberPassword;
     private Button login;
     private Button register;
-// TODO: 2018/2/24  改进登陆界面
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +52,7 @@ public class LoginActivity extends BaseActivity {
             passwordEdit.setText(password);
             rememberPassword.setChecked(true);
         }else{
+            //输入账号
             String account = pref.getString("username","");
             if(!"null".equals(account))usernameEdit.setText(account);
             Log.d("TAG", "onCreate: "+account);
@@ -118,6 +118,7 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

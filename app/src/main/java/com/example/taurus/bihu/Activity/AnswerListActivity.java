@@ -64,7 +64,7 @@ public class AnswerListActivity extends BaseActivity {
         holder.initQuestionViewHolder(question, null, holder, 0);
         answers = new ArrayList<>();
         loadToolBar(toolbar);
-        loadFABBuytton();
+        loadFABButton();
         loadAnswerRecyclerView();
         loadSwipe();
         initWindow(1);
@@ -92,7 +92,7 @@ public class AnswerListActivity extends BaseActivity {
                             Toast.makeText(AnswerListActivity.this,"成功发表您的看法",Toast.LENGTH_SHORT).show();
                             mAnswerDialog.dismiss();
                         }else{
-                            Toast.makeText(AnswerListActivity.this,"请检查您的网络",Toast.LENGTH_LONG).show();
+                            Toast.makeText(AnswerListActivity.this,"发生了不知名的错误，请稍后再试",Toast.LENGTH_LONG).show();
                             mAnswerDialog.dismiss();
                         }
                     }
@@ -106,7 +106,7 @@ public class AnswerListActivity extends BaseActivity {
         });
     }
 
-    private void loadFABBuytton() {
+    private void loadFABButton() {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

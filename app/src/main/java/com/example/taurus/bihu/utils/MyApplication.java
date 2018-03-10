@@ -5,6 +5,7 @@ import android.content.Context;
 
 /**
  * Created by Taurus on 2018/2/20.
+ * 用于全局获取context
  */
 
 public class MyApplication extends Application{

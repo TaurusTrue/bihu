@@ -37,7 +37,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         ActivityCollector.addActivity(this);
-        Log.d("SIZE", "" + ActivityCollector.activities.size());
         super.onCreate(savedInstanceState);
 
     }
@@ -45,7 +44,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         ActivityCollector.removeActivity(this);
-        Log.d("SIZE", "" + ActivityCollector.activities.size());
         super.onDestroy();
 
 
@@ -62,19 +60,17 @@ public class BaseActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    public void initWindow(int type) {//初始化，将状态栏和标题栏设为透明
+    public void initWindow(int type) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if (type == 1) {
+            if (type == 1) {// 先将状态栏设为透明，然后设置颜色
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 SystemBarTintManager tintManager;
                 tintManager = new SystemBarTintManager(this);
                 int statusColor = Color.parseColor("#A1D6D5");
                 tintManager.setStatusBarTintColor(statusColor);
                 tintManager.setStatusBarTintEnabled(true);
-            } else {
+            } else {//将状态栏设置为透明
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             }
         }
     }
