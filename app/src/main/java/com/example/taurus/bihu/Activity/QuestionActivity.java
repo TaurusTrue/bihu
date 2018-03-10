@@ -56,9 +56,9 @@ public class QuestionActivity extends BaseActivity {
         switch (item.getItemId()){
             case android.R.id.home:
                 finish();break;
-            case R.id.up_load_image:
-                // TODO: 2018/2/23 上传图片
-                break;
+//            case R.id.up_load_image:
+//                // TODO: 2018/2/23 上传图片
+//                break;
             case R.id.done:
                 HttpUtil.sendHttpRequest(Apiconfig.POST_QUESTION, "title="+questionTitleEdit.getText()+"&content="+ questionContentEdit.getText()+"&token="+user.getToken(),
                         new HttpUtil.HttpCallbackListener() {
@@ -80,31 +80,31 @@ public class QuestionActivity extends BaseActivity {
         }return true;
     }
 
-    private void getTokenFromService() {
-        StringBuilder ask = new StringBuilder();
-        ask.append("accessKey=" + AccessKey + "&secretKey=" + SecretKey + "&bucket=" + bucket);
-        HttpUtil.sendHttpRequestH(Apiconfig.TOKEN_URL, ask.toString(), new HttpUtil.HttpCallbackListener() {
-            @Override
-            public void onFinish(Response response) {
-                if (response.isSuccess())
-                    uptoken = response.getmToken();
-            }
+//    private void getTokenFromService() {
+//        StringBuilder ask = new StringBuilder();
+//        ask.append("accessKey=" + AccessKey + "&secretKey=" + SecretKey + "&bucket=" + bucket);
+//        HttpUtil.sendHttpRequestH(Apiconfig.TOKEN_URL, ask.toString(), new HttpUtil.HttpCallbackListener() {
+//            @Override
+//            public void onFinish(Response response) {
+//                if (response.isSuccess())
+//                    uptoken = response.getmToken();
+//            }
+//
+//            @Override
+//            public void onError(Exception e) {
+//
+//            }
+//        });
+//    }//向七牛云服务器发出请求 获得用于上传的token
 
-            @Override
-            public void onError(Exception e) {
-
-            }
-        });
-    }//向七牛云服务器发出请求 获得用于上传的token
-
-    private void initData() {
-        getTokenFromService();//获得上传用的token
-        upKey = "image" + String.valueOf(Math.random());
-        Configuration config = new Configuration.Builder()
-                .zone(Zone.zone2)//华南地区
-                .build();
-        uploadManager = new UploadManager(config);
-    }// 用于初始化一些属性
+//    private void initData() {
+//        getTokenFromService();//获得上传用的token
+//        upKey = "image" + String.valueOf(Math.random());
+//        Configuration config = new Configuration.Builder()
+//                .zone(Zone.zone2)//华南地区
+//                .build();
+//        uploadManager = new UploadManager(config);
+//    }// 用于初始化一些属性
 
 
 
