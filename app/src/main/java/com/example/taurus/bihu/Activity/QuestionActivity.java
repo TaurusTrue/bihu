@@ -42,6 +42,7 @@ public class QuestionActivity extends BaseActivity {
         questionTitleEdit = (EditText) findViewById(R.id.questionTitle_edit);
         questionContentEdit = (EditText) findViewById(R.id.questionContent_edit);
         loadToolBar(mToolbar);
+        initWindow(1);
     }
 
     @Override

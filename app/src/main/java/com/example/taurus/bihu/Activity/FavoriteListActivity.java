@@ -38,6 +38,7 @@ private Toolbar toolbar;
         mFavoriteRecyclerView = (RecyclerView)findViewById(R.id.recycler_view_favorite) ;
         loadToolBar(toolbar);
         loadQuestionRecyclerView();
+        initWindow(1);
     }
 
     private void loadQuestionRecyclerView(){

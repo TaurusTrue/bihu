@@ -2,6 +2,7 @@ package com.example.taurus.bihu.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
@@ -198,6 +199,7 @@ public class HttpUtil {
             public void run() {
                 URL url = null;
                 Bitmap bitmap = null;
+                Matrix matrix = null;
                 try {
                     url = new URL(imageUrl);
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -209,7 +211,10 @@ public class HttpUtil {
                     InputStream in = connection.getInputStream();
                     bitmap = BitmapFactory.decodeStream(in);
                     in.close();
-                    final Bitmap finalBitmap = bitmap;
+                    matrix = new Matrix();
+                    matrix.setScale(0.5f, 0.5f);
+                    final Bitmap finalBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                            bitmap.getHeight(), matrix, true);
                     avatar.post(new Runnable() {
                         @Override
                         public void run() {

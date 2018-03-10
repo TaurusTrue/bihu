@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawerlaout_main"
+    android:fitsSystemWindows="true"
     tools:context="com.example.taurus.bihu.Activity.MainActivity">
 
 <android.support.design.widget.CoordinatorLayout
@@ -17,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:id="@+id/toolbar_main"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorBar"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:layout_scrollFlags="scroll|enterAlways|snap">

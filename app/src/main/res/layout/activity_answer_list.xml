@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.example.taurus.bihu.Activity.AnswerListActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/appBarLayout">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_answer"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorBar"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
@@ -93,17 +94,22 @@
                         android:textColor="#000"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/questionDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
                         android:layout_below="@+id/questionTitle"
                         android:layout_marginLeft="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="5dp"
-                        android:ellipsize="end"
-                        android:maxLength="500"
-                        android:textSize="14sp" />
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:id="@+id/questionDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLength="500"
+                            android:textSize="14sp" />
+                    </ScrollView>
                 </RelativeLayout>
 
                 <ImageView
@@ -226,11 +232,10 @@
         android:layout_alignParentRight="true"
         android:layout_margin="16dp"
         android:elevation="8dp"
-        app:backgroundTint="#FFFFFF"
-        android:src="@drawable/ic_answer_gray_24dp">
+        android:src="@drawable/ic_answer_gray_24dp"
+        app:backgroundTint="#FFFFFF">
 
     </android.support.design.widget.FloatingActionButton>
-
 
 
 </RelativeLayout>

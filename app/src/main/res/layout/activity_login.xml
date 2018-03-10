@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@drawable/login_background"
+    android:background="@drawable/login_background"
     android:orientation="vertical"
     tools:context="com.example.taurus.bihu.Activity.LoginActivity">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="120dp"
-        android:layout_margin="20dp"
-        android:src="@drawable/ic_done"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_margin="40dp"
+        android:src="@drawable/ic_done_login" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/login_cardview"
@@ -21,12 +21,14 @@ android:background="@drawable/login_background"
         android:layout_height="250dp"
         android:layout_gravity="center_vertical"
         android:layout_margin="10dp"
-        android:elevation="20dp">
+        android:elevation="55dp"
+        app:cardBackgroundColor="#00000000">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +46,9 @@ android:background="@drawable/login_background"
                     android:id="@+id/username_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="请输入账号" />
+                    android:hint="请输入账号"
+                    android:maxLength="10"
+                    android:maxLines="1" />
             </LinearLayout>
 
             <LinearLayout
@@ -65,18 +69,29 @@ android:background="@drawable/login_background"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="请输入密码"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:maxLength="18"
+                    android:maxLines="1" />
             </LinearLayout>
 
-
-            <Button
-                android:id="@+id/login_button"
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
-                android:text="登                          陆"
-                android:textSize="18dp" />
+                android:elevation="0dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="#00000000">
+
+                <Button
+                    android:id="@+id/login_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00000000"
+                    android:text="登                          陆"
+                    android:textSize="18dp" />
+
+            </android.support.v7.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,8 +104,8 @@ android:background="@drawable/login_background"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:text="记住密码"
-                    android:textSize="16sp"
-                    android:textColor="#a6a6a6"/>
+                    android:textColor="#a6a6a6"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"

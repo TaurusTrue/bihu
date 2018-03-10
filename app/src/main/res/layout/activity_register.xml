@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/login_background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.example.taurus.bihu.Activity.RegisterActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_register"
         android:layout_width="match_parent"
         android:layout_height="?attr/colorPrimary"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorBar"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -26,7 +27,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="90dp"
-        android:elevation="20dp">
+        android:elevation="20dp"
+        app:cardBackgroundColor="#00000000">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,7 +55,8 @@
                     android:id="@+id/username_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="用户名（2–10个字符）" />
+                    android:hint="用户名（2–10个字符）"
+                    android:maxLength="10" />
             </LinearLayout>
 
             <LinearLayout
@@ -75,7 +78,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="密码（6–18位）"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:maxLength="18" />
             </LinearLayout>
 
             <LinearLayout
@@ -96,18 +100,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="请再次输入密码"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:maxLength="18" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/register_button"
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="20dp"
-                android:text="注                          册"
-                android:textSize="18dp" />
+                app:cardBackgroundColor="#00000000"
+                app:cardCornerRadius="20dp">
+
+                <Button
+                    android:id="@+id/register_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00000000"
+                    android:text="注                          册"
+                    android:textSize="18dp" />
+
+            </android.support.v7.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"

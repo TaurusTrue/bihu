@@ -4,10 +4,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -41,16 +43,25 @@ public class LoginActivity extends BaseActivity {
         rememberPassword = (CheckBox) findViewById(R.id.remember_password);
         login = (Button) findViewById(R.id.login_button);
         register = (Button) findViewById(R.id.login_register_button);
+        initWindow(0);
         boolean isRememberPassword = pref.getBoolean("is_remember_password", false);
-         if (isRememberPassword) {
+        if (isRememberPassword) {
             //将账号和密码输入到文本框中
             String account = pref.getString("username", "");
             String password = pref.getString("password", "");
             usernameEdit.setText(account);
             passwordEdit.setText(password);
             rememberPassword.setChecked(true);
+        }else{
+            String account = pref.getString("username","");
+            if(!"null".equals(account))usernameEdit.setText(account);
+            Log.d("TAG", "onCreate: "+account);
         }
+        initLoginButton();
+        initRegisterButton();
+    }
 
+    private void initLoginButton(){
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,13 +79,15 @@ public class LoginActivity extends BaseActivity {
                                 editor.putString("password", password);
                             } else {
                                 editor.clear();
+                                Log.d("TAG", "onFinish: "+username);
+                                editor.putString("username",username);
                             }
                             editor.apply();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             User user = JsonUtil.getUser(response.getmData());
-                            sendUserActionStart(intent,user);
+                            sendUserActionStart(intent, user);
                             finish();
-                        }else{
+                        } else {
                             AlertDialog.Builder dialog = new AlertDialog.Builder(LoginActivity.this);
                             dialog.setTitle("错误");
                             dialog.setMessage("您输入的账号或密码错误,请重新输入");
@@ -97,6 +110,9 @@ public class LoginActivity extends BaseActivity {
                 });
             }
         });
+    }
+
+    private void initRegisterButton(){
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

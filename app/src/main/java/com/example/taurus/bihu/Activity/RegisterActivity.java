@@ -28,6 +28,7 @@ public class RegisterActivity extends BaseActivity {
         setContentView(R.layout.activity_register);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_register);
         loadToolBar(toolbar);
+        initWindow(1);
         Button register = (Button) findViewById(R.id.register_button);
         final EditText username = (EditText) findViewById(R.id.username_edit);
         final EditText password = (EditText) findViewById(R.id.password_edit);

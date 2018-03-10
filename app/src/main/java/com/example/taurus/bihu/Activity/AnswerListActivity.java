@@ -67,7 +67,7 @@ public class AnswerListActivity extends BaseActivity {
         loadFABBuytton();
         loadAnswerRecyclerView();
         loadSwipe();
-
+        initWindow(1);
     }
 
     private void initDialog() {

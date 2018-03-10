@@ -79,7 +79,7 @@ public class AvatarChangeActivity extends BaseActivity {
         setContentView(R.layout.activity_avatar_change);
         Intent intten = getIntent();
         user = (User) intten.getParcelableExtra("user_data");
-        takePhotoButton = (Button) findViewById(R.id.take_photo);
+       // takePhotoButton = (Button) findViewById(R.id.take_photo);
         openAlbumButton = (Button) findViewById(R.id.open_album);
         doneButton = (Button) findViewById(R.id.done_button);
         avatarPreview = (ImageView) findViewById(R.id.avatar_preview);
@@ -88,7 +88,7 @@ public class AvatarChangeActivity extends BaseActivity {
         initData();
         loadOpenAlbumButton();
         loadDoneButton();
-        loadtakePhotoButton();
+        initWindow(1);
     }
 
     private void getTokenFromService() {

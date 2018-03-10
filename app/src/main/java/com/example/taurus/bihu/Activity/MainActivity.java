@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity {
         loadNavigationView();
         loadSwipe();
         loadQuestionRecyclerView();
-
+        initWindow(1);
     }
 
     @Override
